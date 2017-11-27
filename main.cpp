@@ -2,7 +2,6 @@
 
 int main() {
 
-
     string filename = "test";
     lexical_analyzer(filename);
 
