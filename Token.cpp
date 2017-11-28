@@ -35,7 +35,9 @@ bool Token::isVariable(string str) {
             if ((index == 0) && ((ch >= '0') && (ch <= '9') || (ch == '#') || (ch == '$')))
                 return false;
             index++;
-        } else
+            ch = str[index];
+        }
+        else
             return false;
     }
     return true;
@@ -47,6 +49,7 @@ bool Token::isDigit(string str) {
     while (index < str.size()) {
         if ((ch >= '0') && (ch <= '9') || (ch == '.')) {
             index++;
+            ch = str[index];
         } else
             return false;
     }
