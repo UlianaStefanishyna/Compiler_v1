@@ -20,18 +20,12 @@ typedef pair<string, TokenType> tokens;
 typedef pair<char, TokenType> delimiters;
 
 class Token {
-    string m_Token;
-    TokenType m_TokenType;
     vector<tokens> m_Tokens;
     vector<delimiters> m_Delimitations;
     vector<char> m_charDelim;
 
 public:
     Token();
-
-    void setM_TokenType(TokenType m_TokenType);
-
-    void setM_Tokens(const vector<tokens> &m_Tokens);
 
     const vector<char> &getM_Delimitations() const;
 
@@ -44,6 +38,9 @@ public:
     bool isVariable(string str);
 
     bool isDigit(string str);
+
+    string getNameByEnum(TokenType type);
+    void print();
 };
 
 

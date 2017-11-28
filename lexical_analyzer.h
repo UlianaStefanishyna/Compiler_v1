@@ -31,6 +31,7 @@ void lexical_analyzer(string filename){
             continue;
         str += ch;
     }
+    token.print();
 }
 
 ifstream openFile(string filename) {

@@ -1,9 +1,8 @@
 
+#include <iostream>
 #include "Token.h"
 
 Token::Token() {
-    m_Token = "";
-    m_TokenType = UNKNOWN;
     m_charDelim = {'/', '*', '-', '+', '=', '(', ')', ';', ':', '{', '}', '[', ']', ' '};
 }
 
@@ -11,10 +10,12 @@ void Token::addToken(string token) {
     tokens m_Pair(token, getTokenType(token));
     m_Tokens.push_back(m_Pair);
 }
-void Token::addDelimiter(char delim){
+
+void Token::addDelimiter(char delim) {
     delimiters m_Pair(delim, DELIMITATION);
     m_Delimitations.push_back(m_Pair);
 }
+
 TokenType Token::getTokenType(string str) {
     if (isVariable(str))
         return NAME;
@@ -34,8 +35,7 @@ bool Token::isVariable(string str) {
             if ((index == 0) && ((ch >= '0') && (ch <= '9') || (ch == '#') || (ch == '$')))
                 return false;
             index++;
-        }
-        else
+        } else
             return false;
     }
     return true;
@@ -47,8 +47,7 @@ bool Token::isDigit(string str) {
     while (index < str.size()) {
         if ((ch >= '0') && (ch <= '9') || (ch == '.')) {
             index++;
-        }
-        else
+        } else
             return false;
     }
     return true;
@@ -58,10 +57,27 @@ const vector<char> &Token::getM_Delimitations() const {
     return m_charDelim;
 }
 
-void Token::setM_TokenType(TokenType m_TokenType) {
-    Token::m_TokenType = m_TokenType;
+void Token::print() {
+    for (unsigned i = 0; i < m_Tokens.size(); i++) {
+        cout << m_Tokens[i].first << "\t->\t " << getNameByEnum(m_Tokens[i].second) << endl;
+    }
+    cout << endl;
+    for (unsigned i = 0; i < m_Delimitations.size(); i++) {
+        cout << m_Delimitations[i].first << "\t->\t" << getNameByEnum(m_Delimitations[i].second) << endl;
+    }
 }
 
-void Token::setM_Tokens(const vector<tokens> &m_Tokens) {
-    Token::m_Tokens = m_Tokens;
+string Token::getNameByEnum(TokenType type) {
+    switch (type) {
+        case NAME:
+            return "NAME";
+        case NUMBER:
+            return "NUMBER";
+        case DELIMITATION:
+            return "DELIMITATION";
+        case UNKNOWN:
+            return "UNKNOWN";
+        default:
+            break;
+    }
 }
