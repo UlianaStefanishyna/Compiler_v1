@@ -14,9 +14,19 @@
 #include "syntax_analyzer.h"
 using namespace std;
 
-ifstream openFile(string filename);
+ifstream openFile(string filename) {
+    ifstream inFile;
+    inFile.open(filename);
+    string x = "";
 
-Token lexical_analyzer(string filename){
+    if (!inFile) {
+        cout << "Unable to open file";
+        exit(1); // terminate with error
+    }
+    return inFile;
+}
+
+Token lexicalAnalyzer(string filename){
     ifstream inFile = openFile(filename);
 
     Token token;
@@ -45,7 +55,7 @@ Token lexical_analyzer(string filename){
     return token;
 }
 
-void syntaxAlnalyzer(Token token){
+void syntaxAnalyzer(Token token){
     syntax_analyzer sa;
     for(unsigned i = 0; i < token.getM_Tokens().size(); i++) {
         string str = token.getM_Tokens()[i].first;
@@ -60,14 +70,3 @@ void syntaxAlnalyzer(Token token){
     sa.print();
 }
 
-ifstream openFile(string filename) {
-    ifstream inFile;
-    inFile.open(filename);
-    string x = "";
-
-    if (!inFile) {
-        cout << "Unable to open file";
-        exit(1); // terminate with error
-    }
-    return inFile;
-}

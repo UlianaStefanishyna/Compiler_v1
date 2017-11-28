@@ -13,7 +13,7 @@ int main() {
 
     string filename = "test";
 
-    syntaxAlnalyzer(lexical_analyzer(filename));
+    syntaxAnalyzer(lexicalAnalyzer(filename));
 
     return 0;
 }
