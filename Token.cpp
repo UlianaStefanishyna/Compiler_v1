@@ -36,8 +36,7 @@ bool Token::isVariable(string str) {
                 return false;
             index++;
             ch = str[index];
-        }
-        else
+        } else
             return false;
     }
     return true;
@@ -59,12 +58,14 @@ bool Token::isDigit(string str) {
 const vector<char> &Token::getM_Delimitations() const {
     return m_charDelim;
 }
-const vector<tokens> &Token::getM_Tokens() const{
+
+const vector<tokens> &Token::getM_Tokens() const {
     return m_Tokens;
 }
 
 
 void Token::print() {
+    cout << "====Output of lexical analyzer===" << endl;
     for (unsigned i = 0; i < m_Tokens.size(); i++) {
         cout << m_Tokens[i].first << "\t->\t " << getNameByEnum(m_Tokens[i].second) << endl;
     }
@@ -72,6 +73,7 @@ void Token::print() {
     for (unsigned i = 0; i < m_Delimitations.size(); i++) {
         cout << m_Delimitations[i].first << "\t->\t" << getNameByEnum(m_Delimitations[i].second) << endl;
     }
+    cout << "=================================" << endl;
 }
 
 string Token::getNameByEnum(TokenType type) {

@@ -10,7 +10,7 @@ using namespace std;
 
 ifstream openFile(string filename);
 
-void lexical_analyzer(string filename){
+Token lexical_analyzer(string filename){
     ifstream inFile = openFile(filename);
 
     Token token;
@@ -34,6 +34,12 @@ void lexical_analyzer(string filename){
         str += ch;
     }
     token.print();
+
+
+    return token;
+}
+
+void syntaxAlnalyzer(Token token){
     syntax_analyzer sa;
     for(unsigned i = 0; i < token.getM_Tokens().size(); i++) {
         string str = token.getM_Tokens()[i].first;

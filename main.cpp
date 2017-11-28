@@ -1,10 +1,10 @@
-#include "lexical_analyzer.h"
+#include "analyzer.h"
 
 int main() {
 
     string filename = "test";
-    lexical_analyzer(filename);
 
+    syntaxAlnalyzer(lexical_analyzer(filename));
 
     return 0;
 }

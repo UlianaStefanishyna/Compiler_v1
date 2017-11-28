@@ -33,10 +33,12 @@ void syntax_analyzer::addNameType(string str, NameType nameType) {
 }
 
 void syntax_analyzer::print() {
+    cout << "====Output of syntax analyzer===" << endl;
     cout << endl;
     for (unsigned i = 0; i < m_NameTypes.size(); i++) {
         cout << m_NameTypes[i].first << "\t->\t " << getNameByEnum(m_NameTypes[i].second) << endl;
     }
+    cout << "================================" << endl;
 }
 
 string syntax_analyzer::getNameByEnum(NameType type) {
