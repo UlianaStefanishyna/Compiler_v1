@@ -5,6 +5,7 @@
 #include <fstream>
 #include "string"
 #include "Token.h"
+#include "syntax_analyzer.h"
 using namespace std;
 
 ifstream openFile(string filename);
@@ -19,7 +20,8 @@ void lexical_analyzer(string filename){
         bool fDel = false;
         for (char temp : token.getM_Delimitations()) {
             if (temp == ch) {
-                token.addDelimiter(ch);
+                if(ch != ' ')
+                    token.addDelimiter(ch);
                 if(str != "")
                     token.addToken(str);
                 str = "";
@@ -32,6 +34,18 @@ void lexical_analyzer(string filename){
         str += ch;
     }
     token.print();
+    syntax_analyzer sa;
+    for(unsigned i = 0; i < token.getM_Tokens().size(); i++) {
+        string str = token.getM_Tokens()[i].first;
+        if(sa.isVariableType(str))
+            sa.addNameType(str,VARIABLE_TYPE);
+        else {
+            if(sa.isKeyword(str)) sa.addNameType(str,KEYWORD);
+            else if(token.getM_Tokens()[i].second == UNKNOWN) sa.addNameType(str, UNKNOWN_VARIABLE);
+            else if(token.getM_Tokens()[i].second == NAME) sa.addNameType(str,VARIABLE);
+        }
+    }
+    sa.print();
 }
 
 ifstream openFile(string filename) {

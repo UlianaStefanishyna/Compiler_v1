@@ -59,6 +59,10 @@ bool Token::isDigit(string str) {
 const vector<char> &Token::getM_Delimitations() const {
     return m_charDelim;
 }
+const vector<tokens> &Token::getM_Tokens() const{
+    return m_Tokens;
+}
+
 
 void Token::print() {
     for (unsigned i = 0; i < m_Tokens.size(); i++) {
@@ -83,4 +87,8 @@ string Token::getNameByEnum(TokenType type) {
         default:
             break;
     }
+}
+
+void Token::setM_Tokens(const vector<tokens> &m_Tokens) {
+    Token::m_Tokens = m_Tokens;
 }
