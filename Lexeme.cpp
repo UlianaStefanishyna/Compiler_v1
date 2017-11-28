@@ -10,12 +10,12 @@
 #include <iostream>
 #include "Lexeme.h"
 
-syntax_analyzer::syntax_analyzer() {
+Lexeme::Lexeme() {
     m_VariableType = {"int", "double", "void", "float", "long", "short", "bool", "char"};
     m_Keywords = {"if", "else", "for", "while", "do"};
 }
 
-bool syntax_analyzer::isVariableType(string str) {
+bool Lexeme::isVariableType(string str) {
     for (string temp : m_VariableType) {
         if (str == temp)
             return true;
@@ -23,7 +23,7 @@ bool syntax_analyzer::isVariableType(string str) {
     return false;
 }
 
-bool syntax_analyzer::isKeyword(string str) {
+bool Lexeme::isKeyword(string str) {
     for (string temp : m_Keywords) {
         if (str == temp)
             return true;
@@ -32,12 +32,12 @@ bool syntax_analyzer::isKeyword(string str) {
 }
 
 
-void syntax_analyzer::addNameType(string str, NameType nameType) {
+void Lexeme::addNameType(string str, NameType nameType) {
     nametype m_Pair(str, nameType);
     m_NameTypes.push_back(m_Pair);
 }
 
-void syntax_analyzer::print() {
+void Lexeme::print() {
     cout << "====Output of syntax analyzer===" << endl;
     cout << endl;
     for (unsigned i = 0; i < m_NameTypes.size(); i++) {
@@ -46,7 +46,7 @@ void syntax_analyzer::print() {
     cout << "================================" << endl;
 }
 
-string syntax_analyzer::getNameByEnum(NameType type) {
+string Lexeme::getNameByEnum(NameType type) {
     switch (type) {
         case VARIABLE_TYPE:
             return "VARIABLE_TYPE";
@@ -56,6 +56,51 @@ string syntax_analyzer::getNameByEnum(NameType type) {
             return "KEYWORD";
         case UNKNOWN_VARIABLE:
             return "UNKNOWN VARIABLE";
+        default:
+            break;
+    }
+}
+
+string Lexeme::checkSigh(SighType sighType){
+    switch (sighType){
+        case OPENED_BRACKET:
+            return "OPENED_BRACKET";
+        case CLOSED_BRACKET:
+            return "CLOSED_BRACKET";
+        case PLUS:
+            return "PLUS";
+        case MINUS:
+            return "MINUS";
+        case ASTERIX:
+            return "ASTERIX";
+        case DIV:
+            return "DIV";
+        case OPENED_PARENTHNESS:
+            return "OPENED_PARENTHNESS";
+        case CLOSED_PARENTHNESS:
+            return "CLOSED_PARENTHNESS";
+        case EQUAL:
+            return "EQUAL";
+        case INCREMENT:
+            return "INCREMENT";
+        case DECREMENT:
+            return "DECREMENT";
+        case SEMICOLUMN:
+            return "SEMICOLUMN";
+        case COLUMN:
+            return "COLUMN";
+        case PLUS_EQUAL:
+            return "PLUS_EQUAL";
+        case ASTERIX_EQUAL:
+            return "ASTERIX_EQUAL";
+        case DIV_EQUAL:
+            return "DIV_EQUAL";
+        case MINUS_EQUAL:
+            return "MINUS_EQUAL";
+        case OPENED_BODY:
+            return "OPENED_BODY";
+        case CLOSED_BODY:
+            return "CLOSED_BODY ";
         default:
             break;
     }

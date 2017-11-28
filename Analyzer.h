@@ -56,7 +56,7 @@ Token lexicalAnalyzer(string filename){
 }
 
 void syntaxAnalyzer(Token token){
-    syntax_analyzer sa;
+    Lexeme sa;
     for(unsigned i = 0; i < token.getM_Tokens().size(); i++) {
         string str = token.getM_Tokens()[i].first;
         if(sa.isVariableType(str))

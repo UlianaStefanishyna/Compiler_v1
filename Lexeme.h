@@ -21,14 +21,40 @@ enum NameType {
     KEYWORD,
     UNKNOWN_VARIABLE
 };
+enum NumberType {
+    INTEGER,
+    FLOAT
+};
+
+enum SighType {
+    OPENED_BRACKET,     // [
+    CLOSED_BRACKET,     // ]
+    PLUS,
+    MINUS,
+    ASTERIX,
+    DIV,
+    OPENED_PARENTHNESS, // (
+    CLOSED_PARENTHNESS, // )
+    EQUAL,
+    INCREMENT,
+    DECREMENT,
+    SEMICOLUMN,
+    COLUMN,
+    PLUS_EQUAL,
+    ASTERIX_EQUAL,
+    DIV_EQUAL,
+    MINUS_EQUAL,
+    OPENED_BODY,        // {
+    CLOSED_BODY         // }
+};
 typedef pair<string, NameType> nametype;
 
-class syntax_analyzer {
+class Lexeme {
     vector<string> m_VariableType;
     vector<string> m_Keywords;
     vector<nametype> m_NameTypes;
 public:
-    syntax_analyzer();
+    Lexeme();
 
     void addNameType(string str, NameType nameType);
 
@@ -39,5 +65,7 @@ public:
     void print();
 
     string getNameByEnum(NameType type);
+    string checkSigh(SighType sighType);
 };
+
 #endif //COMPILER_V3_SYNTAX_ANALYZER_H
