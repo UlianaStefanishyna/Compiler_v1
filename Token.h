@@ -21,10 +21,6 @@ typedef pair<char, TokenType> delimiters;
 
 class Token {
     vector<tokens> m_Tokens;
-public:
-    void setM_Tokens(const vector<tokens> &m_Tokens);
-
-private:
     vector<delimiters> m_Delimitations;
     vector<char> m_charDelim;
 
@@ -32,19 +28,21 @@ public:
     Token();
 
     const vector<char> &getM_Delimitations() const;
+
     const vector<tokens> &getM_Tokens() const;
+
+    TokenType getTokenType(string str);
+
+    string getNameByEnum(TokenType type);
 
     void addToken(string token);
 
     void addDelimiter(char delim);
 
-    TokenType getTokenType(string str);
-
     bool isVariable(string str);
 
     bool isDigit(string str);
 
-    string getNameByEnum(TokenType type);
     void print();
 };
 

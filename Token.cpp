@@ -90,7 +90,3 @@ string Token::getNameByEnum(TokenType type) {
             break;
     }
 }
-
-void Token::setM_Tokens(const vector<tokens> &m_Tokens) {
-    Token::m_Tokens = m_Tokens;
-}
