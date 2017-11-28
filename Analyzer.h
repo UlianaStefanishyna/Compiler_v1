@@ -11,7 +11,7 @@
 #include <fstream>
 #include "string"
 #include "Token.h"
-#include "syntax_analyzer.h"
+#include "Lexeme.h"
 using namespace std;
 
 ifstream openFile(string filename) {

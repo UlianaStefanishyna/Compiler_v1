@@ -7,7 +7,7 @@
  * @version 1.0
  *
  * */
-#include "analyzer.h"
+#include "Analyzer.h"
 
 int main() {
 

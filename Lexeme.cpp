@@ -8,7 +8,7 @@
  *
  * */
 #include <iostream>
-#include "syntax_analyzer.h"
+#include "Lexeme.h"
 
 syntax_analyzer::syntax_analyzer() {
     m_VariableType = {"int", "double", "void", "float", "long", "short", "bool", "char"};
