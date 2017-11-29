@@ -13,10 +13,8 @@
 int main() {
 
     string filename = "test";
-    //lexicalAnalyzer(filename);
     syntaxAnalyzer(lexicalAnalyzer(filename));
 
-    ASTNode astNode;
     return 0;
 }
 
