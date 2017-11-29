@@ -1,2 +1,13 @@
 
 int someone #int 1258562.5891451 ;{}
+
+
+====Output of lexical analyzer===
+int		->		 NAME
+someone		->		 NAME
+#int		->		 UNKNOWN
+1258562.5891451		->		 NUMBER
+;		->		 DELIMITATION
+{		->		 DELIMITATION
+}		->		 DELIMITATION
+=================================

@@ -1,0 +1,24 @@
+int a if else sdd (*) & ^ ^ % $ # _ (  ; {
+
+
+====Output of syntax analyzer===
+
+int	->	 VARIABLE_TYPE
+a	->	 VARIABLE
+if	->	 KEYWORD
+else	->	 KEYWORD
+sdd	->	 VARIABLE
+(	->	 OPENED_PARENTHNESS
+*	->	 ASTERIX
+)	->	 CLOSED_PARENTHNESS
+&	->	 UNKNOWN
+^	->	 UNKNOWN
+^	->	 UNKNOWN
+%	->	 UNKNOWN
+$	->	 UNKNOWN
+#	->	 UNKNOWN
+_	->	 VARIABLE
+(	->	 OPENED_PARENTHNESS
+;	->	 COLUMN
+{	->	 OPENED_BODY
+================================
