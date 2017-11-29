@@ -38,6 +38,12 @@ bool Lexeme::isSign(string str) {
             return true;
     return false;
 }
+bool Lexeme::isFloat(string str){
+    for(char i = 0; i < str.size(); i++)
+        if(str[i] == '.')
+            return true;
+    return false;
+}
 
 void Lexeme::addLexemeType(string str, LexemeType nameType) {
     lexemeType m_Pair(str, nameType);
@@ -160,6 +166,10 @@ string Lexeme::getTypeByEnum(LexemeType type) {
             return "OPENED_BODY";
         case CLOSED_BODY:
             return "CLOSED_BODY ";
+        case INTEGER_NUMBER:
+            return "INTEGER_NUMBER";
+        case FLOAT_NUMBER:
+            return "FLOAT_NUMBER";
         default:
             break;
     }

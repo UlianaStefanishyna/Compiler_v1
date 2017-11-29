@@ -59,7 +59,7 @@ public:
     bool isKeyword(string str);
 
     bool isSign(string str);
-
+    bool isFloat(string str);
     void print();
 
     string getTypeByEnum(LexemeType type);

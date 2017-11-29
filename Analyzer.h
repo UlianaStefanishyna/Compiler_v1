@@ -77,6 +77,12 @@ void syntaxAnalyzer(Token token) {
             sa.addLexemeType(str, VARIABLE);
         else if(sa.isSign(str))
             sa.typeSigh(str);
+        else if (token.getM_Tokens()[i].second == NUMBER) {
+            if (sa.isFloat(str))
+                sa.addLexemeType(str, FLOAT_NUMBER);
+            else
+                sa.addLexemeType(str, INTEGER_NUMBER);
+        }
     }
     sa.print();
 }
