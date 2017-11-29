@@ -15,18 +15,13 @@
 
 using namespace std;
 
-enum NameType {
+enum LexemeType {
     VARIABLE_TYPE,
     VARIABLE,
     KEYWORD,
-    UNKNOWN_VARIABLE
-};
-enum NumberType {
-    INTEGER,
-    FLOAT
-};
-
-enum SighType {
+    _UNKNOWN,
+    INTEGER_NUMBER,
+    FLOAT_NUMBER,
     OPENED_BRACKET,     // [
     CLOSED_BRACKET,     // ]
     PLUS,
@@ -47,25 +42,29 @@ enum SighType {
     OPENED_BODY,        // {
     CLOSED_BODY         // }
 };
-typedef pair<string, NameType> nametype;
+typedef pair<string, LexemeType> lexemeType;
 
 class Lexeme {
     vector<string> m_VariableType;
     vector<string> m_Keywords;
-    vector<nametype> m_NameTypes;
+    vector<string> m_Delim;
+    vector<lexemeType> m_NameTypes;
 public:
     Lexeme();
 
-    void addNameType(string str, NameType nameType);
+    void addLexemeType(string str, LexemeType nameType);
 
     bool isVariableType(string str);
 
     bool isKeyword(string str);
 
+    bool isSign(string str);
+
     void print();
 
-    string getNameByEnum(NameType type);
-    string checkSigh(SighType sighType);
+    string getTypeByEnum(LexemeType type);
+
+    void typeSigh(string str);
 };
 
 #endif //COMPILER_V3_SYNTAX_ANALYZER_H

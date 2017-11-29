@@ -16,23 +16,7 @@ enum ASTNodeType {
 };
 
 class ASTNode {
-public:
-    ASTNodeType Type;
-    double Value;
-    ASTNode *Left;
-    ASTNode *Right;
 
-    ASTNode() {
-        Type = Undefined;
-        Value = 0;
-        Left = nullptr;
-        Right = nullptr;
-    }
-
-    ~ASTNode() {
-        delete Left;
-        delete Right;
-    }
 };
 
 

@@ -13,6 +13,7 @@
 Lexeme::Lexeme() {
     m_VariableType = {"int", "double", "void", "float", "long", "short", "bool", "char"};
     m_Keywords = {"if", "else", "for", "while", "do"};
+    m_Delim = {"/", "*", "-", "+", "=", "(", ")", ";", ":", "{", "}", "[", "]", " "};
 }
 
 bool Lexeme::isVariableType(string str) {
@@ -31,9 +32,15 @@ bool Lexeme::isKeyword(string str) {
     return false;
 }
 
+bool Lexeme::isSign(string str) {
+    for (string temp : m_Delim)
+        if (temp == str)
+            return true;
+    return false;
+}
 
-void Lexeme::addNameType(string str, NameType nameType) {
-    nametype m_Pair(str, nameType);
+void Lexeme::addLexemeType(string str, LexemeType nameType) {
+    lexemeType m_Pair(str, nameType);
     m_NameTypes.push_back(m_Pair);
 }
 
@@ -41,12 +48,71 @@ void Lexeme::print() {
     cout << "====Output of syntax analyzer===" << endl;
     cout << endl;
     for (unsigned i = 0; i < m_NameTypes.size(); i++) {
-        cout << m_NameTypes[i].first << "\t->\t " << getNameByEnum(m_NameTypes[i].second) << endl;
+        cout << m_NameTypes[i].first << "\t->\t " << getTypeByEnum(m_NameTypes[i].second) << endl;
     }
     cout << "================================" << endl;
 }
 
-string Lexeme::getNameByEnum(NameType type) {
+void Lexeme::typeSigh(string str) {
+    char ch = str[0];
+    switch (ch) {
+        case '[':
+            addLexemeType(str, OPENED_BRACKET);
+            return;
+        case ']':
+            addLexemeType(str, CLOSED_BRACKET);
+            return;
+        case '+':
+            addLexemeType(str, PLUS);
+            return;
+        case '-':
+            addLexemeType(str, MINUS);
+            return;
+        case '*':
+            addLexemeType(str, ASTERIX);
+            return;
+        case '/':
+            addLexemeType(str, DIV);
+            return;
+        case '(':
+            addLexemeType(str, OPENED_PARENTHNESS);
+            return;
+        case ')':
+            addLexemeType(str, CLOSED_PARENTHNESS);
+            return;
+        case '=':
+            addLexemeType(str, EQUAL);
+            return;
+        case ':':
+            addLexemeType(str, SEMICOLUMN);
+            return;
+        case ';':
+            addLexemeType(str, COLUMN);
+            return;
+        case '{':
+            addLexemeType(str, OPENED_BODY);
+            return;
+        case '}':
+            addLexemeType(str, CLOSED_BODY);
+            return;
+        default:
+            break;
+    }
+    if (str == "++")
+        addLexemeType(str, INCREMENT);
+    else if (str == "--")
+        addLexemeType(str, DECREMENT);
+    else if (str == "+=")
+        addLexemeType(str, PLUS_EQUAL);
+    else if (str == "*=")
+        addLexemeType(str, ASTERIX_EQUAL);
+    else if (str == "/=")
+        addLexemeType(str, DIV_EQUAL);
+    else if (str == "-=")
+        addLexemeType(str, MINUS_EQUAL);
+}
+
+string Lexeme::getTypeByEnum(LexemeType type) {
     switch (type) {
         case VARIABLE_TYPE:
             return "VARIABLE_TYPE";
@@ -54,15 +120,8 @@ string Lexeme::getNameByEnum(NameType type) {
             return "VARIABLE";
         case KEYWORD:
             return "KEYWORD";
-        case UNKNOWN_VARIABLE:
-            return "UNKNOWN VARIABLE";
-        default:
-            break;
-    }
-}
-
-string Lexeme::checkSigh(SighType sighType){
-    switch (sighType){
+        case _UNKNOWN:
+            return "UNKNOWN";
         case OPENED_BRACKET:
             return "OPENED_BRACKET";
         case CLOSED_BRACKET:

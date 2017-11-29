@@ -28,7 +28,7 @@ ifstream openFile(string filename) {
     return inFile;
 }
 
-Token lexicalAnalyzer(string filename){
+Token lexicalAnalyzer(string filename) {
     ifstream inFile = openFile(filename);
 
     string str_cast;
@@ -41,9 +41,9 @@ Token lexicalAnalyzer(string filename){
         str_cast.push_back(ch);
         for (string temp : token.getM_Delim()) {
             if (temp == str_cast) {
-                if(str != "")
+                if (str != "")
                     token.addToken(str);
-                if(str_cast != " ")
+                if (str_cast != " ")
                     token.addToken(str_cast);
                 str = "";
                 str_cast = "";
@@ -51,29 +51,32 @@ Token lexicalAnalyzer(string filename){
                 break;
             }
         }
-        if(fDel)
+        if (fDel)
             continue;
         str += str_cast;
         str_cast = "";
     }
-    if(str != "")
+    if (str != "")
         token.addToken(str);
     token.print();
 
     return token;
 }
 
-void syntaxAnalyzer(Token token){
+void syntaxAnalyzer(Token token) {
     Lexeme sa;
-    for(unsigned i = 0; i < token.getM_Tokens().size(); i++) {
+    for (unsigned i = 0; i < token.getM_Tokens().size(); i++) {
         string str = token.getM_Tokens()[i].first;
-        if(sa.isVariableType(str))
-            sa.addNameType(str,VARIABLE_TYPE);
-        else {
-            if(sa.isKeyword(str)) sa.addNameType(str,KEYWORD);
-            else if(token.getM_Tokens()[i].second == UNKNOWN) sa.addNameType(str, UNKNOWN_VARIABLE);
-            else if(token.getM_Tokens()[i].second == NAME) sa.addNameType(str,VARIABLE);
-        }
+        if (sa.isVariableType(str))
+            sa.addLexemeType(str, VARIABLE_TYPE);
+        else if (sa.isKeyword(str))
+            sa.addLexemeType(str, KEYWORD);
+        else if (token.getM_Tokens()[i].second == UNKNOWN)
+            sa.addLexemeType(str, _UNKNOWN);
+        else if (token.getM_Tokens()[i].second == NAME)
+            sa.addLexemeType(str, VARIABLE);
+        else if(sa.isSign(str))
+            sa.typeSigh(str);
     }
     sa.print();
 }
