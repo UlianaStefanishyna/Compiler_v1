@@ -11,7 +11,7 @@
 #include "Token.h"
 
 Token::Token() {
-    m_charDelim = {'/', '*', '-', '+', '=', '(', ')', ';', ':', '{', '}', '[', ']', ' '};
+    m_Delim = {"/", "*", "-", "+", "=", "(", ")", ";", ":", "{", "}", "[", "]", " "};
 }
 
 void Token::addToken(string token) {
@@ -19,19 +19,24 @@ void Token::addToken(string token) {
     m_Tokens.push_back(m_Pair);
 }
 
-void Token::addDelimiter(char delim) {
-    delimiters m_Pair(delim, DELIMITATION);
-    m_Delimitations.push_back(m_Pair);
-}
-
 TokenType Token::getTokenType(string str) {
     if (isVariable(str))
         return NAME;
     if (isDigit(str))
         return NUMBER;
+    if (isDelimiter(str))
+        return DELIMITATION;
     else
         return UNKNOWN;
 
+}
+
+bool Token::isDelimiter(string str) {
+    for (string temp : m_Delim) {
+        if (temp == str)
+            return true;
+    }
+    return false;
 }
 
 bool Token::isVariable(string str) {
@@ -39,7 +44,7 @@ bool Token::isVariable(string str) {
     int ch = str[index];
     while (index < str.size()) {
         if ((ch >= 'a') && (ch <= 'z') || (ch >= 'A') && (ch <= 'Z') || (ch >= '0') && (ch <= '9') || (ch == '#') ||
-            (ch == '$')) {
+            (ch == '$')  || (ch == '_')) {
             if ((index == 0) && ((ch >= '0') && (ch <= '9') || (ch == '#') || (ch == '$')))
                 return false;
             index++;
@@ -63,9 +68,6 @@ bool Token::isDigit(string str) {
     return true;
 }
 
-const vector<char> &Token::getM_Delimitations() const {
-    return m_charDelim;
-}
 
 const vector<tokens> &Token::getM_Tokens() const {
     return m_Tokens;
@@ -75,11 +77,7 @@ const vector<tokens> &Token::getM_Tokens() const {
 void Token::print() {
     cout << "====Output of lexical analyzer===" << endl;
     for (unsigned i = 0; i < m_Tokens.size(); i++) {
-        cout << m_Tokens[i].first << "\t->\t " << getNameByEnum(m_Tokens[i].second) << endl;
-    }
-    cout << endl;
-    for (unsigned i = 0; i < m_Delimitations.size(); i++) {
-        cout << m_Delimitations[i].first << "\t->\t" << getNameByEnum(m_Delimitations[i].second) << endl;
+        cout << m_Tokens[i].first << "\t\t->\t\t " << getNameByEnum(m_Tokens[i].second) << endl;
     }
     cout << "=================================" << endl;
 }
@@ -97,4 +95,8 @@ string Token::getNameByEnum(TokenType type) {
         default:
             break;
     }
+}
+
+const vector<string> &Token::getM_Delim() const {
+    return m_Delim;
 }

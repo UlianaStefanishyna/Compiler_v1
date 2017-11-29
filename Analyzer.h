@@ -10,8 +10,10 @@
 #include <iostream>
 #include <fstream>
 #include "string"
+#include "sstream"
 #include "Token.h"
 #include "Lexeme.h"
+
 using namespace std;
 
 ifstream openFile(string filename) {
@@ -29,28 +31,34 @@ ifstream openFile(string filename) {
 Token lexicalAnalyzer(string filename){
     ifstream inFile = openFile(filename);
 
+    string str_cast;
+
     Token token;
     char ch;
     string str;
     while (inFile.get(ch)) {
         bool fDel = false;
-        for (char temp : token.getM_Delimitations()) {
-            if (temp == ch) {
-                if(ch != ' ')
-                    token.addDelimiter(ch);
+        str_cast.push_back(ch);
+        for (string temp : token.getM_Delim()) {
+            if (temp == str_cast) {
                 if(str != "")
                     token.addToken(str);
+                if(str_cast != " ")
+                    token.addToken(str_cast);
                 str = "";
+                str_cast = "";
                 fDel = true;
                 break;
             }
         }
         if(fDel)
             continue;
-        str += ch;
+        str += str_cast;
+        str_cast = "";
     }
+    if(str != "")
+        token.addToken(str);
     token.print();
-
 
     return token;
 }
