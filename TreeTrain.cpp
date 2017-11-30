@@ -31,46 +31,59 @@ void TreeTrain::destroy_tree() {
 
 }
 
-void TreeTrain::insert(int _val, NodeT *leaf) {
-    if(_val < leaf->value){
+void TreeTrain::insert(type _val, NodeT *leaf) {
+    if(_val == PLUS_){
         if(leaf->left != nullptr) {
             insert(_val, leaf->left);
             cout << "value " << _val << " added as left leaf" << endl;
         }
         else{
             leaf->left = new NodeT;
-            leaf->left->value = _val;
+            leaf->left->myEnum = _val;
             leaf->left->left = nullptr;
             leaf->left->right = nullptr;
-            cout << "leaf was empty; value " << _val << " added as left child" << endl;
+            cout << "leaf was empty; PLUS " << _val << " added as left child" << endl;
         }
 
-    } else if(_val >= leaf->value){
+    } else if(_val == VALUE1){
         if(leaf->right != nullptr) {
             insert(_val, leaf->right);
             cout << "value " << _val << " added as right leaf" << endl;
         }
         else{
             leaf->right = new NodeT;
-            leaf->right->value = _val;
+            leaf->right->myEnum = _val;
             leaf->right->left = nullptr;
             leaf->right->right = nullptr;
-            cout << "leaf was empty; value " << _val << " added as right child" << endl;
+            cout << "leaf was empty; VALUE1 " << _val << " added as right child" << endl;
+        }
+    } else if(_val == VALUE2){
+        if(leaf->left != nullptr) {
+            insert(_val, leaf->left);
+            cout << "value " << _val << " added as right leaf" << endl;
+        }
+        else{
+            leaf->left = new NodeT;
+            leaf->left->myEnum = _val;
+            leaf->left->left = nullptr;
+            leaf->left->right = nullptr;
+            cout << "leaf was empty; VALUE2 " << _val << " added as left child" << endl;
         }
     }
+
 }
 
 
-void TreeTrain::insert(int _val){
+void TreeTrain::insert(type _val){
     if(root != nullptr){
         insert(_val, root);
-        cout << " value " << _val << " added as root child" << endl;
     }
-    else{
+    else if(_val == COLUMN_){
         root = new NodeT;
-        root->value = _val;
+        cout << "root " << root << endl;
+        root->myEnum = _val;
         root->right = nullptr;
         root->left = nullptr;
-        cout << " value " << _val << " added as root. It was empty" << endl;
+        cout << "COLUMN " << _val << " added as root. It was empty" << endl;
     }
 }

@@ -5,30 +5,36 @@
 #ifndef COMPILER_V3_TREETRAIN_H
 #define COMPILER_V3_TREETRAIN_H
 
+#include <vector>
 #include "string"
 using namespace std;
 
-enum{
-    VALUE,
-    OPENED,
-    CLOSED,
+enum type{
+    COLUMN_,
+    VALUE1,
+    VALUE2,
     PLUS_
 };
 
+typedef pair<string, type> myType;
+
 struct NodeT{
-    int value;
+    type myEnum;
+    //myType value;
+    //int value;
     NodeT *left;
     NodeT *right;
 };
 class TreeTrain {
+    //vector<myType> myVec;
     NodeT *root;
     void destroy_tree(NodeT *leaf);
-    void insert(int _val, NodeT *leaf);
+    void insert(type _val, NodeT *leaf);
 public:
     TreeTrain();
     ~TreeTrain();
     void destroy_tree();
-    void insert(int _val);
+    void insert(type _val);
 };
 
 

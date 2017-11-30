@@ -17,10 +17,10 @@ int main() {
     //syntaxAnalyzer(lexicalAnalyzer(filename));
 
     TreeTrain train;
-    train.insert(5);
-    train.insert(2);
-    train.insert(8);
-    train.insert(9);
+    train.insert(COLUMN_);
+    train.insert(PLUS_);
+    train.insert(VALUE1);
+    train.insert(VALUE2);
     train.destroy_tree();
 
     return 0;
