@@ -13,7 +13,7 @@
 #include "sstream"
 #include "Token.h"
 #include "Lexeme.h"
-
+#include "NodeAST.h"
 using namespace std;
 
 ifstream openFile(string filename) {
@@ -63,7 +63,7 @@ Token lexicalAnalyzer(string filename) {
     return token;
 }
 
-void syntaxAnalyzer(Token token) {
+Lexeme syntaxAnalyzer(Token token) {
     Lexeme sa;
     for (unsigned i = 0; i < token.getM_Tokens().size(); i++) {
         string str = token.getM_Tokens()[i].first;
@@ -85,5 +85,22 @@ void syntaxAnalyzer(Token token) {
         }
     }
     sa.print();
+    return sa;
 }
 
+void semanticAnalyzer(){
+    Lexeme* sa;
+    AST btree1;
+    btree1.insert(2);
+
+
+//    for(unsigned i = 0; i < sa.getM_NameTypes().size(); i++){
+//        if(sa.getM_NameTypes()[i].second == OPENED_PARENTHNESS)
+//            astNode->m_str = sa.getM_NameTypes()[i].first;
+//            astNode->Left = astNode;
+//            astNode.Left = &(sa.getM_NameTypes()[i]);
+//
+//    }
+
+
+}

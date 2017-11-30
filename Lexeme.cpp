@@ -174,3 +174,7 @@ string Lexeme::getTypeByEnum(LexemeType type) {
             break;
     }
 }
+
+const vector<lexemeType> &Lexeme::getM_NameTypes() const {
+    return m_NameTypes;
+}

@@ -50,6 +50,9 @@ class Lexeme {
     vector<string> m_Delim;
     vector<lexemeType> m_NameTypes;
 public:
+    const vector<lexemeType> &getM_NameTypes() const;
+
+public:
     Lexeme();
 
     void addLexemeType(string str, LexemeType nameType);
@@ -59,7 +62,9 @@ public:
     bool isKeyword(string str);
 
     bool isSign(string str);
+
     bool isFloat(string str);
+
     void print();
 
     string getTypeByEnum(LexemeType type);

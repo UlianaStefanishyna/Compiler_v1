@@ -5,19 +5,35 @@
 #ifndef COMPILER_V3_NODEAST_H
 #define COMPILER_V3_NODEAST_H
 
-enum ASTNodeType {
-    Undefined,
-    OperatorPlus,
-    OperatorMinus,
-    OperatorMul,
-    OperatorDiv,
-    UnaryMinus,
-    NumberValue
+#include <stddef.h>
+#include "Lexeme.h"
+
+struct Node {
+    int key_value;
+    Node *left;
+    Node *right;
 };
 
-class ASTNode {
+class AST {
+public:
+    AST();
 
+    ~AST();
+
+    void insert(int key);
+
+    Node *search(int key);
+
+    void destroy_tree();
+
+private:
+    void destroy_tree(Node *leaf);
+
+    void insert(int key, Node *leaf);
+
+    Node *search(int key, Node *leaf);
+
+    Node *root;
 };
-
 
 #endif //COMPILER_V3_NODEAST_H
