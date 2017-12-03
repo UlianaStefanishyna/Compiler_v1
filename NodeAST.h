@@ -5,35 +5,26 @@
 #ifndef COMPILER_V3_NODEAST_H
 #define COMPILER_V3_NODEAST_H
 
-#include <stddef.h>
 #include "Lexeme.h"
+#include "Tree.h"
 
-struct Node {
-    int key_value;
-    Node *left;
-    Node *right;
+enum KeyWordType {
+    IF,
+    ELSE,
+    FOR,
+    WHILE,
+    DO,
+    NOT_A_KEYWORD
 };
 
-class AST {
+class AST : public Tree {
+    int m_index;
 public:
-    AST();
+    AST() : m_index(0) {}
 
-    ~AST();
+    KeyWordType getKeyWordType(LexemeType lexemetype, string str);
 
-    void insert(int key);
-
-    Node *search(int key);
-
-    void destroy_tree();
-
-private:
-    void destroy_tree(Node *leaf);
-
-    void insert(int key, Node *leaf);
-
-    Node *search(int key, Node *leaf);
-
-    Node *root;
 };
 
 #endif //COMPILER_V3_NODEAST_H
+

@@ -9,19 +9,13 @@
  * */
 #include "Analyzer.h"
 #include "NodeAST.h"
-#include "TreeTrain.h"
+#include "Tree.h"
 
 int main() {
 
     string filename = "test";
-    //syntaxAnalyzer(lexicalAnalyzer(filename));
+    syntaxAnalyzer(lexicalAnalyzer(filename));
 
-    TreeTrain train;
-    train.insert(COLUMN_);
-    train.insert(PLUS_);
-    train.insert(VALUE1);
-    train.insert(VALUE2);
-    train.destroy_tree();
 
     return 0;
 }

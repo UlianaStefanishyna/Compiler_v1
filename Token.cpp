@@ -11,7 +11,7 @@
 #include "Token.h"
 
 Token::Token() {
-    m_Delim = {"/", "*", "-", "+", "=", "(", ")", ";", ":", "{", "}", "[", "]", " "};
+    m_Delim = {"/", "*", "-", "+", "=", "(", ")", ";", ":", "{", "}", "[", "]", "<", ">"," "};
 }
 
 void Token::addToken(string token) {
@@ -37,6 +37,19 @@ bool Token::isDelimiter(string str) {
             return true;
     }
     return false;
+}
+
+void Token::check() {
+    for(unsigned i = 0; i < getM_Tokens().size(); i++){
+        if((getM_Tokens()[i].first == "+") && (getM_Tokens()[i+1].first == "+")) {
+            m_Tokens[i].first = "++";
+            m_Tokens.erase(m_Tokens.begin()+i+1);
+        }
+        if((getM_Tokens()[i].first == "-") && (getM_Tokens()[i+1].first == "-")) {
+            m_Tokens[i].first = "--";
+            m_Tokens.erase(m_Tokens.begin()+i+1);
+        }
+    }
 }
 
 bool Token::isVariable(string str) {
@@ -75,6 +88,7 @@ const vector<tokens> &Token::getM_Tokens() const {
 
 
 void Token::print() {
+    check();
     cout << "====Output of lexical analyzer===" << endl;
     for (unsigned i = 0; i < m_Tokens.size(); i++) {
         cout << m_Tokens[i].first << "\t\t->\t\t " << getNameByEnum(m_Tokens[i].second) << endl;

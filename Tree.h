@@ -7,35 +7,34 @@
 
 #include <vector>
 #include "string"
+#include "Lexeme.h"
+
 using namespace std;
 
-enum type{
-    COLUMN_,
-    VALUE1,
-    VALUE2,
-    PLUS_
-};
 
-typedef pair<string, type> myType;
+typedef pair<char, LexemeType> myType;
 
-struct NodeT{
-    type myEnum;
-    //myType value;
-    //int value;
+struct NodeT {
+    LexemeType myEnum;
     NodeT *left;
     NodeT *right;
 };
-class TreeTrain {
-    //vector<myType> myVec;
-    NodeT *root;
-    void destroy_tree(NodeT *leaf);
-    void insert(type _val, NodeT *leaf);
-public:
-    TreeTrain();
-    ~TreeTrain();
-    void destroy_tree();
-    void insert(type _val);
-};
 
+class Tree {
+    NodeT *root;
+
+    void destroy_tree(NodeT *leaf);
+
+    void insert(LexemeType _val, NodeT *leaf);
+
+public:
+    Tree();
+
+    ~Tree();
+
+    void destroy_tree();
+
+    void insert(LexemeType _val);
+};
 
 #endif //COMPILER_V3_TREETRAIN_H

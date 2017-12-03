@@ -40,7 +40,9 @@ enum LexemeType {
     DIV_EQUAL,
     MINUS_EQUAL,
     OPENED_BODY,        // {
-    CLOSED_BODY         // }
+    CLOSED_BODY,         // }
+    LOWER_THAN,
+    MORE_THAN
 };
 typedef pair<string, LexemeType> lexemeType;
 

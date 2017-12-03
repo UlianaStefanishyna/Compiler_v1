@@ -89,9 +89,9 @@ Lexeme syntaxAnalyzer(Token token) {
 }
 
 void semanticAnalyzer(){
-    Lexeme* sa;
-    AST btree1;
-    btree1.insert(2);
+    //Lexeme* sa;
+    //AST btree1;
+    //btree1.insert(2);
 
 
 //    for(unsigned i = 0; i < sa.getM_NameTypes().size(); i++){

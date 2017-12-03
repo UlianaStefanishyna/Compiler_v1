@@ -13,7 +13,7 @@
 Lexeme::Lexeme() {
     m_VariableType = {"int", "double", "void", "float", "long", "short", "bool", "char"};
     m_Keywords = {"if", "else", "for", "while", "do"};
-    m_Delim = {"/", "*", "-", "+", "=", "(", ")", ";", ":", "{", "}", "[", "]", " "};
+    m_Delim = {"/", "*", "-", "+", "=", "(", ")", ";", ":", "{", "}", "[", "]", "<", ">"," ", "++", "--"};
 }
 
 bool Lexeme::isVariableType(string str) {
@@ -60,6 +60,22 @@ void Lexeme::print() {
 }
 
 void Lexeme::typeSigh(string str) {
+    if (str == "++") {
+        addLexemeType(str, INCREMENT);
+        return;
+    }
+    else if (str == "--") {
+        addLexemeType(str, DECREMENT);
+        return;
+    }
+    else if (str == "+=")
+        addLexemeType(str, PLUS_EQUAL);
+    else if (str == "*=")
+        addLexemeType(str, ASTERIX_EQUAL);
+    else if (str == "/=")
+        addLexemeType(str, DIV_EQUAL);
+    else if (str == "-=")
+        addLexemeType(str, MINUS_EQUAL);
     char ch = str[0];
     switch (ch) {
         case '[':
@@ -101,21 +117,16 @@ void Lexeme::typeSigh(string str) {
         case '}':
             addLexemeType(str, CLOSED_BODY);
             return;
+        case '<':
+            addLexemeType(str, LOWER_THAN);
+            return;
+        case '>':
+            addLexemeType(str, MORE_THAN);
+            return;
         default:
             break;
     }
-    if (str == "++")
-        addLexemeType(str, INCREMENT);
-    else if (str == "--")
-        addLexemeType(str, DECREMENT);
-    else if (str == "+=")
-        addLexemeType(str, PLUS_EQUAL);
-    else if (str == "*=")
-        addLexemeType(str, ASTERIX_EQUAL);
-    else if (str == "/=")
-        addLexemeType(str, DIV_EQUAL);
-    else if (str == "-=")
-        addLexemeType(str, MINUS_EQUAL);
+
 }
 
 string Lexeme::getTypeByEnum(LexemeType type) {
@@ -170,6 +181,10 @@ string Lexeme::getTypeByEnum(LexemeType type) {
             return "INTEGER_NUMBER";
         case FLOAT_NUMBER:
             return "FLOAT_NUMBER";
+        case LOWER_THAN:
+            return "LOWER_THAN";
+        case MORE_THAN:
+            return "MORE_THAN";
         default:
             break;
     }

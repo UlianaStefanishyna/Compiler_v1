@@ -51,6 +51,7 @@ public:
     bool isDigit(string str);
 
     bool isDelimiter(string str);
+    void check();
 
     void print();
 };
