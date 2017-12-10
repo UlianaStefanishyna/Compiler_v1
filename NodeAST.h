@@ -17,13 +17,25 @@ enum KeyWordType {
     NOT_A_KEYWORD
 };
 
+enum _IF {};
+
 class AST : public Tree {
     int m_index;
+    vector<string> m_errors;
+    vector<string> operatorCompare;
 public:
-    AST() : m_index(0) {}
+    const vector<string> &getM_errors() const;
 
-    KeyWordType getKeyWordType(LexemeType lexemetype, string str);
+    AST() : m_index(0) {
+        operatorCompare = {"<", ">", "=="};
+    }
 
+    KeyWordType getKeyWordType(vector<lexemeType> &lexeme);
+
+    int search(int i, vector<lexemeType> &lexeme);
+
+    void ruleIF(vector<lexemeType> &lexeme);
+    bool if_eval(string str);
 };
 
 #endif //COMPILER_V3_NODEAST_H

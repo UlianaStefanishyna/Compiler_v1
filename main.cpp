@@ -8,8 +8,6 @@
  *
  * */
 #include "Analyzer.h"
-#include "NodeAST.h"
-#include "Tree.h"
 
 int main() {
 

@@ -16,6 +16,7 @@ typedef pair<char, LexemeType> myType;
 
 struct NodeT {
     LexemeType myEnum;
+    string str;
     NodeT *left;
     NodeT *right;
 };

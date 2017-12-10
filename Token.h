@@ -35,7 +35,6 @@ public:
     Token();
 
 
-
     const vector<string> &getM_Delim() const;
 
     const vector<tokens> &getM_Tokens() const;
@@ -51,6 +50,7 @@ public:
     bool isDigit(string str);
 
     bool isDelimiter(string str);
+
     void check();
 
     void print();

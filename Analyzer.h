@@ -88,19 +88,3 @@ Lexeme syntaxAnalyzer(Token token) {
     return sa;
 }
 
-void semanticAnalyzer(){
-    //Lexeme* sa;
-    //AST btree1;
-    //btree1.insert(2);
-
-
-//    for(unsigned i = 0; i < sa.getM_NameTypes().size(); i++){
-//        if(sa.getM_NameTypes()[i].second == OPENED_PARENTHNESS)
-//            astNode->m_str = sa.getM_NameTypes()[i].first;
-//            astNode->Left = astNode;
-//            astNode.Left = &(sa.getM_NameTypes()[i]);
-//
-//    }
-
-
-}
